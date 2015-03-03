@@ -14,7 +14,20 @@ function adminPage() {
 	});
 }
 
+function homePage() {
+	var ajaxURL = "homepage.html";
+	
+	$.ajax({
+		beforeSend : function() {
+			$('.dashboard-wrapper').html('<div class="loading">&nbsp;</div>');
+		},
+		url : ajaxURL,
+		success : function(result) {
+			window.location.reload();
+		}
 
+	});
+}
   
 function userDetailsAddPage() {
 
@@ -96,7 +109,7 @@ function viewUserDetailsPage(){
 }*/
 
 
-$(document).ready(function() {
+/*$(document).ready(function() {
 	
 	var deleteLink = $("a:contains('Delete')");
   
@@ -128,5 +141,5 @@ $(document).ready(function() {
 		event.preventDefault();
 	});
    
-});  
+}); */ 
 

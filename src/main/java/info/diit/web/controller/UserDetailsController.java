@@ -14,6 +14,7 @@ import info.diit.registration.OnRegistrationCompleteEvent;
 import info.diit.validation.EmailExistsException;
 
 import java.io.IOException;
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
@@ -154,41 +155,42 @@ public class UserDetailsController {
 	 		String occupation = reqPar.get("occupation");
 	 		String user_id = reqPar.get("user_id");
 	 		
-		  try {
-		    	
-		    	if (!image.isEmpty()) {
-		    		
-                  Image img = new Image();
-                  
-                  img.setId(Long.parseLong(user_id));
-                  img.setData(image.getBytes());
-                  img.setContentType(image.getContentType());
-                  
-                
-                  imageService.save(img);
-                  UserDetails userDetails = new UserDetails();
-                  
-                  userDetails.setUser_id(Long.parseLong(user_id));
-                  userDetails.setFirstName(firstName);
-                  userDetails.setLastName(lastName);
-                  userDetails.setGender(gender);
-                  userDetails.setCountry(country);
-                  userDetails.setAddress(address);
-                  userDetails.setOccupation(occupation);
-                  userDetails.setImage(image.getBytes());
-                  
-                  
-                  userDetailsService.updateUserDetails(userDetails);
-                 
-                  
-                  System.out.println("================== User Details Save Page ============");
-              }
-	
-			} catch (MaxUploadSizeExceededException e) {
-				LOGGER.debug("Max upload size exceeded!");
-	        }    
+		try {
 
-	        return"redirect:/user/viewUserDetails";
+			if (!image.isEmpty()) {
+
+				Image img = new Image();
+
+				img.setId(Long.parseLong(user_id));
+				img.setData(image.getBytes());
+				img.setContentType(image.getContentType());
+				img.setUpdateDate(new Date());
+				img.setUpdatedBy(user_id);
+
+				imageService.save(img);
+				System.out
+						.println("================== User Details Save Page ============");
+			}
+
+		} catch (MaxUploadSizeExceededException e) {
+			LOGGER.debug("Max upload size exceeded!");
+		}
+
+		UserDetails userDetails = new UserDetails();
+
+		userDetails.setUser_id(Long.parseLong(user_id));
+		userDetails.setFirstName(firstName);
+		userDetails.setLastName(lastName);
+		userDetails.setGender(gender);
+		userDetails.setCountry(country);
+		userDetails.setAddress(address);
+		userDetails.setOccupation(occupation);
+		userDetails.setImage(image.getBytes());
+		userDetails.setUpdatedBy(user_id);
+
+		userDetailsService.updateUserDetails(userDetails);
+
+		return "redirect:/user/viewUserDetails";
 	    }
 	
 /*	private UserDetails createUserDetails(UserDetailsDto userDetailsDto) {

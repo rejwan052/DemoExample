@@ -64,7 +64,7 @@ type="text/css" media="all"/>
       
         <div id="topnavId" class="top-nav">
          <ul  id="myTab">
-					<li><a class="selected" href="homepage.html">
+					<li><a class="selected" href="#" onclick="homePage();">
 							<div class="fs1" aria-hidden="true" data-icon="&#xe0a0;"></div>
 							Dashboard
 					</a></li>

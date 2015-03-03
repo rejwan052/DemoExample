@@ -112,7 +112,7 @@ $(document).ready(function() {
 	        	
 	        	
 	        },complete: function() {
-	        	
+
 	        	$("#message").text("User Details Updated Successfully!");
 	        	$("#message").show();
 	        	
@@ -242,6 +242,7 @@ $(document).ready(function() {
 									<div class="span2">
 											<div class="fileupload fileupload-new" data-provides="fileupload">
                                                   <div class="fileupload-new thumbnail" style="width: 100px; height: 100px;">
+                                                  	   <c:set var="now" value="<%=new java.util.Date().getTime()%>" />
                                                       <img alt="User Image" src="imageServlet?userId+${now}" onerror="this.src='resources/image/images.jpg'" />
                                                   </div>
                                                   <div class="fileupload-preview fileupload-exists thumbnail" style="max-width: 100px; max-height: 100px; line-height: 20px;"></div>

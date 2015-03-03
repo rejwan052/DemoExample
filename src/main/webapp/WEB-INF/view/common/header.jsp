@@ -62,7 +62,7 @@
             </span>
           </a>
         </li> -->
-        <c:set var="now" value="<%=new java.util.Date()%>" />
+        <c:set var="now" value="<%=new java.util.Date().getTime()%>" />
 		<img class="img-circle" width="44"  alt="User Image" src="imageServlet?userId+${now}" onerror="this.src='resources/image/images.jpg'">
        
 
