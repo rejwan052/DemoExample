@@ -70,9 +70,8 @@ public class UserDetailsController {
 	public String showUserDetailsForm(WebRequest request, Model model) {
 		
 		System.out.println("================== User Details Form Page ============");
-		UserDetails userDetails = new UserDetails();
 		
-		model.addAttribute("userDetails", userDetails);
+		model.addAttribute("userDetails", new UserDetails());
 		model.addAttribute("countryList", countryService.countryList());
 		
 		return "userDetailsAdd";
@@ -87,7 +86,10 @@ public class UserDetailsController {
 		System.out.println("================== User Details View Page ============");
 				
 		UserDetails userDetails = userDetailsService.getUserDetails();
-	
+		if (userDetails==null) {
+			System.out.println("Inside  Null");
+			model.addAttribute("userDetailsNotFound","User details not found.Please add your details!");
+		}
 		model.addAttribute("userDetails",userDetails);
 		
 		model.addAttribute("countryList", countryService.countryList());
@@ -121,27 +123,27 @@ public class UserDetailsController {
                   
                 
                   imageService.save(img);
-                  UserDetails userDetails = new UserDetails();
-                  
-                  userDetails.setFirstName(firstName);
-                  userDetails.setLastName(lastName);
-                  userDetails.setGender(gender);
-                  userDetails.setCountry(country);
-                  userDetails.setAddress(address);
-                  userDetails.setOccupation(occupation);
-                  userDetails.setImage(image.getBytes());
-                  
-                  userDetailsService.saveUserDetails(userDetails);
-                 
-                  
-                  System.out.println("================== User Details Save Page ============");
+                  System.out.println("================== User Details Image Try Inside============");
               }
 	
 			} catch (MaxUploadSizeExceededException e) {
 				LOGGER.debug("Max upload size exceeded!");
-	        }    
-
-	        return"redirect:/user/saveUserDetails";
+	        }
+		  
+		  UserDetails userDetails = new UserDetails();
+          
+          userDetails.setFirstName(firstName);
+          userDetails.setLastName(lastName);
+          userDetails.setGender(gender);
+          userDetails.setCountry(country);
+          userDetails.setAddress(address);
+          userDetails.setOccupation(occupation);
+          userDetails.setImage(image.getBytes());
+          
+          userDetailsService.saveUserDetails(userDetails);
+          System.out.println("================== User Details Save without Image============");
+          
+	     return"redirect:/user/saveUserDetails";
 	    }
 	 
 	 	@RequestMapping(value = "/user/updateUserDetails", method = RequestMethod.POST)

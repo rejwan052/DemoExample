@@ -128,145 +128,195 @@ $(document).ready(function() {
 
 </head>
 <body>
-<div class="container-fluid">
+	<c:choose>
+		<c:when test="${userDetails==null}">
+			<div class="row-fluid">
+				<div class="alert alert-danger animated fadeInUp" align="center"
+					id="userDetailsNotFoundMsg"
+					style="float: left; width: auto; margin-left: 35%; position: absolute;">
+					${userDetailsNotFound}</div>
+			</div>
+		</c:when>
+		<c:otherwise>
 
-	<div class="left-sidebar">
-		<div class="row-fluid">
-			<div class="alert alert-success animated fadeInUp" align="center" id="message" style="float: left; width: auto; margin-left:35%; display: none;position: absolute;"></div>
-				<div class="span12">
-					<div class="widget no-margin">
-					
-						<div class="widget-header">
-							<div class="title">Employee Profile </div>
-							<span class="tools">
-								<a class="fs1" data-icon="" aria-hidden="true" data-original-title=""></a>
-							</span>
-						</div>
-						
-						<div class="widget-body">
-							<div class="container-fluid">
-								<div class="row-fluid">
-									<form:form id="viewUserDetails"	modelAttribute="userDetails" action="${pageContext.request.contextPath}/user/updateUserDetails" method="POST" enctype="multipart/form-data"  class="form-horizontal">
-									<div class="span10">
-										
-																			
-											<h5> Personal Information </h5>
-											<hr>
-											<div class="control-group">
-											<div class="span10">
-											
-												<div class="span6">
-												<form:hidden path="user_id" id="id" value="${userDetails.user_id}" />
-													<label class="control-label"><spring:message code="label.usrDetails.firstName"></spring:message></label>
-													<div class="controls controls-row span4">
-													<form:input path="firstName" value="${userDetails.firstName}" placeholder="First Name" />
-													</div>
-												</div>
-												<div class="span6">
-													<label class="control-label"><spring:message code="label.usrDetails.lastName"></spring:message></label>
-													<div class="controls controls-row span4">
-													<form:input path="lastName" value="${userDetails.lastName}" placeholder="Last Name" />
-													</div>
-												</div>
-											</div>
-											</div>
-											
-											
-											<div class="control-group">
-											<div class="span10">
-												<div class="span6">
-													<label class="control-label"><spring:message code="label.usrDetails.gender"></spring:message></label>
-													<div class="controls controls-row span4">
-														 <form:radiobutton path="gender" value="M"	required="required" />Male
-														 <form:radiobutton path="gender" value="F"	required="required" />Female
-													</div>
-												</div>
-												<div class="span6">
-														<label class="control-label"><spring:message
-																code="label.usrDetails.country"></spring:message></label>
-														<div class="controls controls-row span4">
+			<div class="container-fluid">
 
-															<form:select path="country" id="country"
-																required="required">
-																<form:option value="" label="[Select One]" />
-																<form:options items="${countryList}"
-																	itemValue="countryId" itemLabel="countryName" />
-															</form:select>
+				<div class="left-sidebar">
+					<div class="row-fluid">
+						<div class="alert alert-success animated fadeInUp" align="center"
+							id="message"
+							style="float: left; width: auto; margin-left: 35%; display: none; position: absolute;"></div>
+						<div class="span12">
+							<div class="widget no-margin">
+
+								<div class="widget-header">
+									<div class="title">Employee Profile</div>
+									<span class="tools"> <a class="fs1" data-icon=""
+										aria-hidden="true" data-original-title=""></a>
+									</span>
+								</div>
+
+								<div class="widget-body">
+									<div class="container-fluid">
+
+
+
+
+
+
+										<div class="row-fluid">
+											<form:form id="viewUserDetails" modelAttribute="userDetails"
+												action="${pageContext.request.contextPath}/user/updateUserDetails"
+												method="POST" enctype="multipart/form-data"
+												class="form-horizontal">
+												<div class="span10">
+
+
+													<h5>Personal Information</h5>
+													<hr>
+													<div class="control-group">
+														<div class="span10">
+
+															<div class="span6">
+																<form:hidden path="user_id" id="id"
+																	value="${userDetails.user_id}" />
+																<label class="control-label"><spring:message
+																		code="label.usrDetails.firstName"></spring:message></label>
+																<div class="controls controls-row span4">
+																	<form:input path="firstName"
+																		value="${userDetails.firstName}"
+																		placeholder="First Name" />
+																</div>
+															</div>
+															<div class="span6">
+																<label class="control-label"><spring:message
+																		code="label.usrDetails.lastName"></spring:message></label>
+																<div class="controls controls-row span4">
+																	<form:input path="lastName"
+																		value="${userDetails.lastName}"
+																		placeholder="Last Name" />
+																</div>
+															</div>
 														</div>
 													</div>
-											</div>
-											</div>
-											
-											
-											
-											<div class="control-group">
-											<div class="span10">
-												<div class="span6">
-													<label class="control-label"><spring:message code="label.usrDetails.address"></spring:message></label>
-													<div class="controls controls-row span4">
-													
-													<form:textarea path="address" rows="5" cols="30" required="required" />
-													</div>
-												</div>
-												<div class="span6">
-														<label class="control-label"><spring:message
-																code="label.usrDetails.occupation"></spring:message></label>
-														<div class="controls controls-row span5">
 
-															<form:radiobutton path="occupation" value="P"
-																required="required" />
-															Programmer
-															<form:radiobutton path="occupation" value="E"
-																required="required" />
-															Engineer
-															<form:radiobutton path="occupation" value="D"
-																required="required" />
-															Doctor<br>
-															<form:radiobutton path="occupation" value="O"
-																required="required" />
-															Other
+
+													<div class="control-group">
+														<div class="span10">
+															<div class="span6">
+																<label class="control-label"><spring:message
+																		code="label.usrDetails.gender"></spring:message></label>
+																<div class="controls controls-row span4">
+																	<form:radiobutton path="gender" value="M"
+																		required="required" />
+																	Male
+																	<form:radiobutton path="gender" value="F"
+																		required="required" />
+																	Female
+																</div>
+															</div>
+															<div class="span6">
+																<label class="control-label"><spring:message
+																		code="label.usrDetails.country"></spring:message></label>
+																<div class="controls controls-row span4">
+
+																	<form:select path="country" id="country"
+																		required="required">
+																		<form:option value="" label="[Select One]" />
+																		<form:options items="${countryList}"
+																			itemValue="countryId" itemLabel="countryName" />
+																	</form:select>
+																</div>
+															</div>
 														</div>
 													</div>
-											</div>
-											</div>
-											
-											
-											<div class="form-actions">
-												<button class="btn btn-info" type="submit"> Save changes </button>
-												<button class="btn" type="button"> Cancel </button>
-											</div>
-											
-										
+
+
+
+													<div class="control-group">
+														<div class="span10">
+															<div class="span6">
+																<label class="control-label"><spring:message
+																		code="label.usrDetails.address"></spring:message></label>
+																<div class="controls controls-row span4">
+
+																	<form:textarea path="address" rows="5" cols="30" />
+																</div>
+															</div>
+															<div class="span6">
+																<label class="control-label"><spring:message
+																		code="label.usrDetails.occupation"></spring:message></label>
+																<div class="controls controls-row span5">
+
+																	<form:radiobutton path="occupation" value="P"
+																		required="required" />
+																	Programmer
+																	<form:radiobutton path="occupation" value="E"
+																		required="required" />
+																	Engineer
+																	<form:radiobutton path="occupation" value="D"
+																		required="required" />
+																	Doctor<br>
+																	<form:radiobutton path="occupation" value="O"
+																		required="required" />
+																	Other
+																</div>
+															</div>
+														</div>
+													</div>
+
+
+													<div class="form-actions">
+														<button class="btn btn-info" type="submit">Save
+															changes</button>
+														<button class="btn" type="button">Cancel</button>
+													</div>
+
+
+												</div>
+
+												<div class="span2">
+													<div class="fileupload fileupload-new"
+														data-provides="fileupload">
+														<div class="fileupload-new thumbnail"
+															style="width: 100px; height: 100px;">
+															<c:set var="now"
+																value="<%=new java.util.Date().getTime()%>" />
+															<img alt="User Image" src="imageServlet?userId+${now}"
+																onerror="this.src='resources/image/images.jpg'" />
+														</div>
+														<div
+															class="fileupload-preview fileupload-exists thumbnail"
+															style="max-width: 100px; max-height: 100px; line-height: 20px;"></div>
+														<div>
+															<span class="btn btn-white btn-file"> <span
+																class="fileupload-new"><i
+																	class="fa fa-paper-clip"></i> Select image</span> <span
+																class="fileupload-exists"><i class="fa fa-undo"></i>
+																	Change</span> <form:input type="file" class="default"
+																	path="image" id="image" />
+															</span> <a href="#" class="btn btn-danger fileupload-exists"
+																data-dismiss="fileupload"><i class="fa fa-trash"></i>
+																Remove</a>
+														</div>
+													</div>
+
+
+												</div>
+											</form:form>
+										</div>
+
 									</div>
-									
-									<div class="span2">
-											<div class="fileupload fileupload-new" data-provides="fileupload">
-                                                  <div class="fileupload-new thumbnail" style="width: 100px; height: 100px;">
-                                                  	   <c:set var="now" value="<%=new java.util.Date().getTime()%>" />
-                                                      <img alt="User Image" src="imageServlet?userId+${now}" onerror="this.src='resources/image/images.jpg'" />
-                                                  </div>
-                                                  <div class="fileupload-preview fileupload-exists thumbnail" style="max-width: 100px; max-height: 100px; line-height: 20px;"></div>
-                                                  <div>
-                                                   <span class="btn btn-white btn-file">
-                                                   <span class="fileupload-new"><i class="fa fa-paper-clip"></i> Select image</span>
-                                                   <span class="fileupload-exists"><i class="fa fa-undo"></i> Change</span>
-                                                   <form:input type="file" class="default" path="image" id="image" />
-                                                   </span>
-                                                      <a href="#" class="btn btn-danger fileupload-exists" data-dismiss="fileupload"><i class="fa fa-trash"></i> Remove</a>
-                                                  </div>
-                                              </div>
-										
-										
-									</div>
-									</form:form>
 								</div>
 							</div>
 						</div>
 					</div>
 				</div>
-		</div>
-	</div>
 
-</div>
+			</div>
+
+		</c:otherwise>
+	</c:choose>
+
 </body>
 </html>

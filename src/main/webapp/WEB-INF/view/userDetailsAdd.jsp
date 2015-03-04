@@ -159,7 +159,7 @@
 													<label class="control-label"><spring:message code="label.usrDetails.address"></spring:message></label>
 													<div class="controls controls-row span4">
 													
-													<form:textarea path="address" rows="5" cols="30" required="required" />
+													<form:textarea path="address" rows="5" cols="30" />
 													</div>
 												</div>
 												<div class="span6">

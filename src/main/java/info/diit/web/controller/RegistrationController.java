@@ -95,11 +95,7 @@ public class RegistrationController {
         }
 
         User registered = createUserAccount(accountDto);      
-        /*session.setAttribute("logInId", registered.getId());
-        
-        Long userId = (Long) session.getAttribute("logInId");
-        System.out.println("User ID: "+userId);*/
-        
+       
         if (registered == null) {
             result.rejectValue("email", "message.regError");
         }

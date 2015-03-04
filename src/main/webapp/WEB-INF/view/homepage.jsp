@@ -54,7 +54,8 @@ type="text/css" media="all"/>
   
 	<body>
 	
-    <header>
+
+    <header id="userImageContent">
       <jsp:include page="/WEB-INF/view/common/header.jsp"></jsp:include>
     </header>
 
@@ -155,8 +156,8 @@ type="text/css" media="all"/>
      
      <script src="<c:url value="resources/bootstrap/bootstrap-fileupload/bootstrap-fileupload.js" />" type="text/javascript">
      </script>
-     
-    <script type="text/javascript">
+	
+	<script type="text/javascript">
       //ScrollUp
       $(function () {
         $.scrollUp({
@@ -183,22 +184,20 @@ type="text/css" media="all"/>
       $('#scrollbar-three').tinyscrollbar();
 
      
-     /*  $(document).ready(function(){ 
-          $("#myTab a").click(function(e){
-            e.preventDefault();
-          	$(this).tab('show');
-          });
-      }); */
-      
+  
+    
+  
+	   /*  var auto_refresh = setInterval(function() {
+			$('#userImageContent').load('weview/header.jsp').fadeIn("slow");
+		}, 5000); // refresh every 10000 milliseconds  */
 
-     /*  //Tabs
-      $('#myTab a').click(function (e) {
-        e.preventDefault();
-        $(this).tab('show');
-      })
- */
-      
-    </script>
+		/*  //Tabs
+		 $('#myTab a').click(function (e) {
+		   e.preventDefault();
+		   $(this).tab('show');
+		 })
+		 */
+	</script>
     
     
   </body>
