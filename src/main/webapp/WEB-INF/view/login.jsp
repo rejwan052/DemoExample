@@ -115,11 +115,14 @@
   -webkit-animation-name: fadeInUp;
   animation-name: fadeInUp;
 }
+
+
 </style>
 
 </head>
 
 <body oncontextmenu="return false">
+<!-- <div id="loader_cont" style="display:none;"><img src="resources/image/page_loader.gif"></div> --> 
 	<div class="container">
 		<div>
 		<div style="float:left;margin: 2% 26%; width: 30%;position: absolute;" align="center">
@@ -224,7 +227,7 @@
                 
                 <div class="span5">
                       <div class="sign-in-container">
-                         <form role="form" name='f' class="login-wrapper" action="j_spring_security_check" method='POST' onsubmit="return validate();">
+                         <form role="form" id="loginForm" name='f' class="login-wrapper" action="j_spring_security_check" method='POST' onsubmit="return validate();">
                           <div class="header">
                             <div class="row-fluid">
                               <div class="span12">

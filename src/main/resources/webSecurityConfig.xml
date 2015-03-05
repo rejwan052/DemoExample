@@ -14,13 +14,16 @@
         <intercept-url pattern="/signin/**" access="permitAll" />
         <intercept-url pattern="/signup/**" access="permitAll" />
         <intercept-url pattern="/user/registration*" access="permitAll" />
-        <intercept-url pattern="/user/userDetails*" access="permitAll" />
-        <intercept-url pattern="user/saveUserDetails*" access="permitAll" />
+        <intercept-url pattern="/homepage*" access="permitAll" />
+        
+  
+        <intercept-url pattern="/user/saveUserDetails*" access="hasRole('READ_PRIVILEGE')" />
+        <intercept-url pattern="/user/viewUserDetails*" access="hasRole('READ_PRIVILEGE')" />
+        <intercept-url pattern="/user/updateUserDetails*" access="hasRole('READ_PRIVILEGE')" />
+        
         <intercept-url pattern="/regitrationConfirm*" access="permitAll" />
         <intercept-url pattern="/expiredAccount*" access="permitAll" />
         <intercept-url pattern="/registration*" access="permitAll" />
-        <intercept-url pattern="/saveUserDetails*" access="permitAll" />
-        <intercept-url pattern="/userDetailsAdd*" access="permitAll" />
         <intercept-url pattern="/badUser*" access="permitAll" />
         <intercept-url pattern="/emailError*" access="permitAll" />
         <intercept-url pattern="/resources/**" access="permitAll" />

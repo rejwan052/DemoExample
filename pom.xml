@@ -163,15 +163,6 @@
                 <artifactId>maven-war-plugin</artifactId>
             </plugin>
 
-	<plugin>
-		<groupId>com.heroku.sdk</groupId>
-		<artifactId>heroku-maven-plugin</artifactId>
-		<version>0.3.3</version>
-		<configuration>
-			<appName>demoexample</appName>
-		</configuration>
-	</plugin>
-
         </plugins>
     </build>
 

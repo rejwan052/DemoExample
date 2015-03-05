@@ -7,11 +7,15 @@
 	content:url(resources/image/images.jpg);
 }
 </style> -->
+<link href="<c:url value="resources/flipClock/flipclock.css" />" rel="stylesheet">
 <%@ page session="true"%>
 
       <a href="#" class="logo">
         <img src="resources/image/logo.png" alt="logo" />
       </a>
+      
+      <div class="clock" style="float:left ;margin: 2% 25% 0 25%;width:25%;">  
+      </div>
       <div class="btn-group">
         <button class="btn btn-primary">
          <%=SecurityContextHolder.getContext().getAuthentication().getName()%>

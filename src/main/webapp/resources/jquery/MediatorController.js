@@ -2,12 +2,18 @@
 function adminPage() {
 	var ajaxURL = "admin.html";
 	
+	$("#myTab li a").removeClass("selected");
+	$('#myTab li a').eq(2).addClass('selected');
+	
 	$.ajax({
 		beforeSend : function() {
 			$('.dashboard-wrapper').html('<div class="loading">&nbsp;</div>');
 		},
 		url : ajaxURL,
 		success : function(result) {
+			$('#subnavId ul').hide();
+			$('#subnavId ul').eq(2).show();
+			$(this).addClass('selected');
 			$(".dashboard-wrapper").html(result);
 		}
 
@@ -61,20 +67,29 @@ function ancorClicked(){
 
 function viewUserDetailsPage(){
 	
-	
-	
+/*	alert("Called");*/
+	$("#loader_cont").hide();
 	var ajaxURL="user/viewUserDetails";
 	$('#userdetailsTab li a').removeClass('selected');
 	$(this).find('a').addClass('selected');
 	$.ajax({
 		beforeSend : function() {
-			$('.dashboard-wrapper').html('<div class="loading">&nbsp;</div>');
+    		/*alert("beforeSend");*/
+    		$("#loader_cont").show();
+    		/*$("#loader_cont").fadeIn("slow");*/
 		},
 		url : ajaxURL,
 		success : function(result) {
+			
 			$('#subnavId ul').eq(1).show();
 			$(".dashboard-wrapper").html(result);
-		}
+			$("#loader_cont").hide();
+		},complete: function() {
+			$("#loader_cont").hide();
+        	/*alert("Complete");*/
+        	/*$("#loader_cont").fadeOut();*/
+        	
+        }
 
 	});
 }

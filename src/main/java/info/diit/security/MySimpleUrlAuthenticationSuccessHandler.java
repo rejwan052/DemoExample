@@ -67,8 +67,8 @@ public class MySimpleUrlAuthenticationSuccessHandler implements AuthenticationSu
            
         } else if (isAdmin) {
         	System.out.println("################# IS ADMIN #############################");
-            return "/console.html";
-        	/*return "/homepage.html?user=" + authentication.getName();*/
+            /*return "/console.html";*/
+        	return "/homepage.html?user=" + authentication.getName();
         } else {
             throw new IllegalStateException();
         }

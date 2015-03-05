@@ -51,6 +51,9 @@
   -webkit-animation-name: fadeInUp;
   animation-name: fadeInUp;
 }
+
+#loader_cont { position: absolute; background-color: rgba(255, 255, 255, 0.9); width: 100%; height: 100%; top: 0; left: 0; z-index: 1500; }
+#loader_cont img { width: 40px; height: 40px; position: absolute; top: 50%; left: 50%; margin-top: -20px; margin-left: -20px; }
 </style>
 <!-- <script>
 $(document).ready(function() {
@@ -97,10 +100,15 @@ $(document).ready(function() {
  $(function(){
 	$("#viewUserDetails").submit(function(event){
 		event.preventDefault();
-		
+		$("#loader_cont").hide();
 		var formData = new FormData($('#viewUserDetails')[0]);
 		
 	    $.ajax({
+	    	beforeSend : function() {
+	    		/*alert("beforeSend");*/
+	    		$("#loader_cont").show();
+	    		/*$("#loader_cont").fadeIn("slow");*/
+			},
 	        url: $('#viewUserDetails').attr("action"),
 	        type: 'POST',
 	        enctype: 'multipart/form-data',
@@ -109,11 +117,11 @@ $(document).ready(function() {
 	        success: function (result) {
 	        	
 	        	$(".dashboard-wrapper").html(result);
-	        	
+	        	$("#loader_cont").hide();
 	        	
 	        },complete: function() {
-
-	        	$("#message").text("User Details Updated Successfully!");
+	        	$("#loader_cont").hide();
+	           	$("#message").text("User Details Updated Successfully!");
 	        	$("#message").show();
 	        	
 	        },
@@ -125,9 +133,9 @@ $(document).ready(function() {
 	});
 });          
 </script>
-
 </head>
 <body>
+<div id="loader_cont"><img src="resources/image/page_loader.gif"></div>
 	<c:choose>
 		<c:when test="${userDetails==null}">
 			<div class="row-fluid">

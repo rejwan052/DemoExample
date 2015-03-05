@@ -52,7 +52,7 @@
 type="text/css" media="all"/>
   </head>
   
-	<body>
+	<body id="bodyDiv">
 	
 
     <header id="userImageContent">
@@ -69,12 +69,22 @@ type="text/css" media="all"/>
 							<div class="fs1" aria-hidden="true" data-icon="&#xe0a0;"></div>
 							Dashboard
 					</a></li>
-
-					<li><a href="#" onclick="userDetailsAddPage();">
-							<div class="fs1" aria-hidden="true" data-icon="&#xe0b8;"></div>
-							Employee
-					</a></li>
-		</ul>
+					
+					<sec:authorize access="hasRole('READ_PRIVILEGE')">
+						<li><a href="#" onclick="userDetailsAddPage();">
+								<div class="fs1" aria-hidden="true" data-icon="&#xe0b8;"></div>
+								Employee
+						</a></li>
+					</sec:authorize>
+					
+					<sec:authorize access="hasRole('WRITE_PRIVILEGE')">
+					<li>
+						<a  href="#" onclick="adminPage();">
+								<div class="fs1" data-icon="&#xe0a3" aria-hidden="true"></div>Admin
+						</a>
+					</li>
+					</sec:authorize>
+				</ul>
          <div class="clearfix"></div>
         </div>
 
@@ -96,14 +106,20 @@ type="text/css" media="all"/>
 					<li><a class="selected" href="#" onclick="userDetailsAddPage();"> Add Employee Details </a></li>
 
 					<li><a href="#" onclick="viewUserDetailsPage();"> Employee	Details </a></li>
-					<li><a href="#" onclick="adminPage();"> Admin Details </a></li>
+					<!-- <li><a href="#" onclick="adminPage();"> Admin Details </a></li> -->
 
+				</ul>
+				
+				<ul id="adminTab" style="float: left; display: none;">
+					<li><a href="#" class="heading">Admin</a></li>
+					<li><a class="selected" href="#" onclick="adminPage();">Admin Details </a></li>
 				</ul>
 
 				<div class="btn-group pull-right">
 					<jsp:include page="/WEB-INF/view/common/dropdown.jsp"></jsp:include>
 				</div>
 			</div>
+			
 			<div class="dashboard-wrapper">
 			
 			</div>
@@ -157,6 +173,11 @@ type="text/css" media="all"/>
      <script src="<c:url value="resources/bootstrap/bootstrap-fileupload/bootstrap-fileupload.js" />" type="text/javascript">
      </script>
 	
+	<!-- FlipClock -->
+	 <script src="<c:url value="resources/flipClock/flipclock.js" />" type="text/javascript">
+     </script>
+	
+	
 	<script type="text/javascript">
       //ScrollUp
       $(function () {
@@ -183,11 +204,12 @@ type="text/css" media="all"/>
       $('#scrollbar-two').tinyscrollbar();
       $('#scrollbar-three').tinyscrollbar();
 
-     
-  
-    
-  
-	   /*  var auto_refresh = setInterval(function() {
+      //FlipClock
+		var clock = $('.clock').FlipClock({
+			clockFace : 'TwentyFourHourClock'
+		});
+
+		/*  var auto_refresh = setInterval(function() {
 			$('#userImageContent').load('weview/header.jsp').fadeIn("slow");
 		}, 5000); // refresh every 10000 milliseconds  */
 
